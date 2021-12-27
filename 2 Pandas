@@ -1,0 +1,141 @@
+import pandas as pd
+import numpy as np
+data=pd.Series([1,2,3,4])
+data
+
+data=pd.Series([1,2,3,4,'a'],index=[True,False,True,False,True])
+data
+data[False]
+
+s=pd.Series({"a":1,"b":2,"c":3})
+x=pd.Series(4,index=[1,2,3,4])
+x
+x.index
+x.values
+x.dtype
+x.shape
+x.ndim
+x.head(n=2) #first two rows
+x.tail(n=2) #for last two rows
+
+df=pd.DataFrame([1,2,3,4])
+df
+df2=pd.DataFrame({"Name":["arun","amit","rahul"]})
+df2
+data=pd.read_csv("C:\\Users\\user\\Downloads\\annual.csv")
+data
+data.head(n=2)
+data.tail(n=2)
+data["year"]
+data.iloc[3]
+data.iloc[3].values
+data.isna().sum()
+
+data2={"name":[np.nan,"amit","arun"]}
+data2=pd.DataFrame(data2)
+data2.isna().sum()
+data2.dropna(inplace=True)
+data2
+data.describe() #get the statistical summary of numerical columns
+data["variable"].describe()
+data[["industry_name_ANZSIC","rme_size_grp"]] #taking 2 column seperately
+salary=[45000,50000]
+data2["salary"]=salary #adding salary column in the dataset
+data2
+data.drop(["rme_size_grp"],axis=1) #axis for deleting the column
+data2=data2.rename(columns={"name":"emp_name"}) #rename a column
+data2
+data2.fillna(value=0,inplace=True)
+data2.replace(to_replace=["amit"],value="rahul")
+
+
+data=pd.read_csv("C:\\Users\\user\\Downloads\\annual.csv")
+new_row=pd.DataFrame({"year":2012,"industry_code_ANZSIC  ":'A','industry_name_ANZSIC ':'Computer Department','rme_size_grp':np.nan,'variable':np.nan,'value':2,'unit':'COUNT'},index=[0])
+data=pd.concat([new_row,data]).reset_index(drop=True)
+data.drop([2011],inplace=True)
+data=data.truncate(before=2,after=3) #delete all rows before 2 and all rows after 3
+
+for i,j in data.iterrows():
+    print(i,j)
+    
+for key,value in data.iteritems():
+    print(key,value)
+    print()
+    
+for i in data.itertuples():
+    print(i)
+    
+for i,j in data.iteritems():
+    print(j.values)
+    for colname,coldata in data.iteritems():
+    print(colname)
+    print(coldata.values)
+    
+    
+ for colname in data:
+    col=data[colname] #fetching name of each column
+    print(colname)
+    print(col.values)
+    
+info_marks=pd.DataFrame({'name':['Smith','William'],'Maths':[78,84],'Science':[89,92],'English':[72,75]})    
+
+writer=pd.ExcelWriter("C:\\Users\\user\\Downloads\\result.xlsx")
+info_marks.to_excel(writer)
+writer.save()    #this will save your dataframe as an excel in the given path
+
+
+ data.sort_values("value",axis=0,inplace=True) 
+ data.sort_values("value",axis=0,ascending=False,inplace=True) #data in descending order
+ 
+data={'Gender':['m','f','f','m','f','m','m'],'Height':[172,171,169,173,170,175,178]}
+df=pd.DataFrame(data)
+f_filter=df['Gender']=='f'
+f_filter
+f_avg=df[f_filter]['Height'].mean()
+output=pd.DataFrame({'Gender':['f'],'Height':[f_avg]})
+df.groupby('Gender').mean()
+obj=df.groupby('Gender')
+obj.groups
+
+for name,group in obj:
+    print(name,'contains',group.shape)
+
+for name,group in obj:
+    print(name)
+
+for name,group in obj:
+    print(name,'contains',group.shape[0],'rows')
+    
+obj.get_group('f')
+
+df.groupby('Gender').agg([np.mean,np.median,np.sum,np.min])
+
+
+rows={'Gender':['m','f'],'Height':[np.nan,180]}
+
+def filter_func(x):
+    return x['Height'].std()<3
+    
+df_filter=df.groupby(['Gender']).filter(filter_func)
+
+
+    
+
+
+
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    

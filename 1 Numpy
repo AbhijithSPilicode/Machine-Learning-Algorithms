@@ -1,0 +1,27 @@
+import numpy as np
+
+a=np.array([1,2,3,4])
+print(a)
+
+b=np.array([1,2,3,4],dtype=float)
+d=np.array([[1,2,3],[4,5,6]])
+e=np.array([[1,2,3],[4,5,6],[7,8,9]])
+e.ndim
+e[0][1]
+
+a=np.linspace(start=1,stop=10,num=8)
+print(a)
+
+c=np.arange(start=12,stop=20,dtype=float)
+np.ones((3,3))
+np.zeros((3,3))
+np.random.rand(5,2)
+
+c=np.array([1,2,3,4,5,6])
+c.reshape((3,2))
+d=c.reshape((1,6))
+e=np.array([5,4,2,34,5,5])
+c[1:3] #fetching row2 till row3
+
+e=np.array([[1,2,3],[4,5,6],[7,8,9]])
+
